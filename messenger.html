@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/messenger.css">
+    <title>Asian College Messenger</title>
+    
+</head>
+<body>
+    <div class="main-box">
+        <div class="details"><p>Username: <input type="text" id="username" hidden></input><span id="this"></span> | Socket: <span id="room"></span></p></div>
+        <div class="box-header">
+            <a href="index.html"><img src="./img/AC_Logo_Vert.png" alt=""></a>
+            <h3>Asian College Messenger</h3>
+        </div>
+        <div class="box-chat">
+            
+        </div>
+        <div class="box-input">
+            <textarea name="" id="messageBox" style="resize: none; font-size: 20px; padding: 0 5px;" placeholder="Aa"></textarea>
+            <button id="send">Send</button>
+        </div>
+    </div>
+    <script>
+        var readyStateCheckInterval = setInterval(function() {
+            if (document.readyState === "complete") {
+                clearInterval(readyStateCheckInterval);
+                const ClientName=localStorage.getItem("username");
+                var room=localStorage.getItem("room");
+                document.getElementById('username').value=ClientName;
+                document.getElementById('this').innerHTML=ClientName;
+                document.getElementById('room').innerHTML=room;
+            }
+        }, 10);
+        (function() {
+            const sendBtn = document.querySelector('#send');
+            const messages =document.getElementById('box-chat');
+            const messageBox = document.querySelector('#messageBox');
+            const name=document.querySelector('#username');
+            var storage;
+            let ws;
+            function showMessage(message) {
+                var obj=JSON.parse(message);
+                console.log(obj.client);
+                console.log(obj.msg);
+                var a;
+                if(messageBox.value==""){
+                    a="👍";
+                }else{
+                    a=messageBox.value
+                }
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes();
+                var dateTime = time;
+                
+                var msg=document.getElementsByClassName('box-chat')[0].innerHTML+=
+                `<div class='box-person2'><div class='box-msg'><p class='name'>${name.value}: ${dateTime}</p><p class='msg'>${a}</p></div></div>`;
+                
+                messageBox.value = '';
+            }
+            //Client
+            function clientmsg(message) {
+                var obj=JSON.parse(message);
+                var client=obj.client;
+                var msg=obj.msg;
+                var time=obj.time;
+                if(msg==""){
+                    msg="👍";
+                }
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes();
+                var dateTime = time;
+               
+                var msg=document.getElementsByClassName('box-chat')[0].innerHTML+=
+                `<div class='box-person1'><div class='box-msg'><p class='name'>${client}: ${time}</p><p class='msg'>${msg}</p></div></div>`;
+                
+                messageBox.value = '';
+                
+            }
+            function init() {
+                if (ws) {
+                    ws.onerror = ws.onopen = ws.onclose = null;
+                    ws.close();
+                }
+                ws = new WebSocket('ws://localhost:6969');
+                ws.onopen = () => {
+                }
+                
+                ws.onmessage = ({ data }) => clientmsg(data);
+                
+                ws.onclose = function() {
+                ws = null;
+                }
+                
+            }
+            sendBtn.onclick = function() {
+                if (!ws) {
+                showMessage("No WebSocket connection :(");
+                return ;
+                }
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes();
+                var dateTime = time;
+                ws.send(JSON.stringify({
+                    client: name.value,
+                    msg: messageBox.value,
+                    time: dateTime
+                }))
+                showMessage(JSON.stringify({
+                    client: name.value,
+                    msg: messageBox.value,
+                    time: dateTime
+                }));
+            }
+            init();
+        })();
+    </script>
+</body>
+</html>

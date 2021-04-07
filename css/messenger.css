@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.main-box .details{
+    height: auto;
+    width: 100%;
+    font-size: 9px;
+    text-align: center;
+}
+.main-box{
+    width: 400px;
+    height: auto;
+    box-shadow: 5px 10px 10px #d4cece;
+    margin: 30px auto;
+    background-color: #fcfcfc;
+    padding: 0px 0;
+}
+.main-box .box-header{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.main-box .box-header h3{
+    text-align: center;
+    font-weight: 500;
+    justify-self: center;
+}
+.main-box .box-header img{
+    height: 50px;
+    padding: 10px;
+    margin-right: 30px;
+}
+.main-box .box-chat{
+    padding-top: 5px;
+    height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+}
+.box-person1{
+    float: left;
+    width: 100%;
+    height:auto;
+    margin-bottom: 5px;
+}
+
+.box-person1 .box-msg{
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: auto;
+    max-width: 200px;
+    width: 200px;
+    margin-left: 10px;
+}
+.box-person1 .msg{
+    max-width: 200px;
+    width: auto;
+    background-color: #00C6FF;
+    padding: 3px 8px;
+    border-radius: 15px;
+    color: white;
+}
+.box-person1 .p{
+    margin-left: 3px;
+}
+
+.box-person2{
+    height:auto;
+    margin-bottom: 5px;
+    float: right;
+    width: 100%;
+}
+
+.box-person2 .box-msg{
+    margin-right: 10px;
+    float: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    height: auto;
+    max-width: 200px;
+    width: 200px;
+}
+.box-person2 .p{
+    margin-left: 3px;
+}
+.box-person2 .msg{
+    max-width: 200px;
+    width: auto;
+    background-color: #0078FF;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+}
+.joined{
+    font-size: 9px;
+    text-align: center;
+    padding: 3px 0;
+    background-color: #f8f2f2;
+}
+.name{
+    font-size: 9px;
+    margin-bottom: 5px;
+}
+.main-box .box-input{
+    display: flex;
+    align-items: center;
+}
+.main-box .box-input textarea{
+    height: 30px;
+    width: 80%;
+    border: none;
+    outline: none;
+}
+.main-box .box-input button{
+    height: 31px;
+    border: none;
+    width: 20%;
+    background-color: #50a3e7;
+    color: white;
+    outline: none;
+}
+.main-box .box-input button:hover{
+    background-color: #235680;
+    cursor:pointer;
+}
+
+

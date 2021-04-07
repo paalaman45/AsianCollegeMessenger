@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Asian College Messenger</title>
+</head>
+<body>
+   <div class="box">
+        <div class="header-logo">
+            <img src="./img/ac_logo_horizontal.jpg" alt="">
+        </div>
+        <div class="header-text">
+            <h2>Asian College Messenger</h2>
+        </div>
+        <div class="information">
+            <center><input type="text" id="name" placeholder="Enter Nickname"></center>
+            <center><p>Nickname</p></center>
+        </div>
+        <div class="header-continue">
+            <button onclick="myFunction()">Connect</button>
+        </div>
+   </div>
+   <script>
+        function myFunction() {
+            var name=document.getElementById('name').value;
+            if(name!=""){
+                localStorage.setItem("username",name);
+                window.location.href="messenger.html";
+            }else{
+                alert("Please fill up the fields!");
+            }
+        }
+   </script>
+</body>
+</html>
